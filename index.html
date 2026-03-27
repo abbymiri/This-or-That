@@ -1,8 +1,6 @@
 <!DOCTYPE html> 
 <html> 
-<!-- The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only.  Any user of this code does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.
- 
-THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
+<!-- This code was developed to create an adaptive math quiz that gives the user harder questions when they get questions correct and easier questions when when get an answer incorrect
  
  
 Authors in chronological order of contribution:
@@ -17,10 +15,10 @@ Timothy Riedel
 triedel@utexas.edu
  
 Brief Description of Goal of Code:
-[ADD YOUR DISCRIPTION HERE]
+The goal of this code is to create an app that provides the user with a math quiz that adapts as they answer questions to match their math level.
 	
 Known Issues:
-[ADD ANY KNOWN ISSUES HERE]
+There are no known issues with this code.
 
 -->
 	
@@ -36,7 +34,6 @@ Known Issues:
 <script>
         var correct_count = 0;//variable to keep track of the number of questions the user entered correctly
 		var incorrect_count = 0;//variable to keep track of the number of questions the user entered incorrectly
-		var questions_answered = 0;//the number of questions answered can be different, so this will tally it
         
 
         function scoreAdd(){ //this function is used to add an additional count to correct_count each time it is called
@@ -47,13 +44,9 @@ Known Issues:
             incorrect_count = incorrect_count + 1; 
         }
 
-		function questionsAnswered(){ //this function is used to add an additional count to correct_count each time it is called
-            questions_answered = questions_answered + 1; 
-        }
-
 	function outputResults(){
 		var resultsText = document.getElementById("resultsLocation"); // creates a java script link between the variable called "resultsText" and the page element with id of resultsLocation
-		resultsLocation.innerHTML = "You got " + correct_count + " correct! <br> You got " + incorrect_count + " incorrect :(" //This line replaces the text from the Results Page with the diagnosis
+		resultsLocation.innerHTML = "You got " + correct_count + " correct! <br> You got " + incorrect_count + " incorrect :(" //This line replaces the text from the Results Page with the overall score
 	}
 
   </script>
@@ -80,6 +73,10 @@ Known Issues:
     left: 0vw;
     z-index: 1;
 }
+.w3-container h1 {
+    font-family: 'Times New Roman', serif;
+}
+
 </style>
 
 <body>
@@ -97,7 +94,7 @@ Known Issues:
 	<p>Best of Luck!!</p>
 </div>
 	
-<!-- this section displays Page for Question 1 and gives user the yes/no options-->
+<!-- this section displays Page for Question 1 and gives user the first question. every user will see this question-->
 <div class="page" id="one">
 	<div id="header" class="w3-container w3-flat-pomegranate"> <!--creating the header for Q1-->
 		<h1>Algebra</h1>
@@ -105,13 +102,13 @@ Known Issues:
 	
     	<div id="content" class="w3-container"> <!--creating the question and buttons for Q1-->
 		<p>|2x-5| = 11</p> <!--I asked the question for Question 1 (Q1) here.-->  
-		<a href="#three" onclick="scoreAdd();" onclick="questionsAnswered();" " class="w3-btn w3-flat-pomegranate"> 8, -3 </a> <!-- correct, add to score-->
+		<a href="#three" onclick="scoreAdd();" onclick="questionsAnswered();" " class="w3-btn w3-flat-pomegranate"> 8, -3 </a> <!-- this is the correct answer, so the score increases-->
 		<a href="#two" onclick="incorrectAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 3, -8 </a> <!-- incorrect-->
 		<a href="#two" onclick="incorrectAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 7, 10 </a> <!-- incorrect-->
 	</div>
 </div>
 	
-<!-- this section displays page for Question 2 and gives user the yes/no options-->
+<!-- this section displays page for Question 2 and gives user a math question if they got an incorrect answer on question 1-->
 <div class="page" id="two">
 	<div id="header" class="w3-container w3-flat-pomegranate"> <!--creating the header for Q2-->
 		<h1>Algebra</h1>
@@ -121,12 +118,12 @@ Known Issues:
 		<p>That was incorrect. Here's an easier question: </p> <!--short intro message--> 
 		<p>4x + 2 = 6</p> <!--I asked the question for Q2 here.--> 
 		<a href="#four" onclick="incorrectAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 10 </a> <!-- incorrect-->
-		<a href="#three" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 1 </a> <!-- correct, increase score-->
+		<a href="#three" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 1 </a> <!-- this is the correct answer, so the score increases-->
 		<a href="#four" onclick="incorrectAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 2 </a> <!-- incorrect-->
 	</div>
 </div>	
 	
-<!-- this section displays page for Question 3 and gives user the yes/no options-->
+<!-- this section displays page for Question 3 and gives user the next question if they were correct on question 1-->
 <div class="page" id="three">
 	<div id="header" class="w3-container w3-flat-pomegranate"> <!--creating the header for Q3-->
 		<h1>Geometry</h1>
@@ -136,12 +133,12 @@ Known Issues:
 		<p>That was correct! Here's a harder question: </p> <!--short intro message--> 
 		<p>The legs of a right triangle are 8 and 15. What is the hypotenuse?</p> <!--I asked the question for Q3 here.--> 
 		<a href="#four" onclick="incorrectAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 23 </a> <!-- incorrect-->
-		<a href="#five" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 17 </a> <!-- correct-->
+		<a href="#five" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 17 </a> <!-- this is the correct answer, so the score increases-->
 		<a href="#four" onclick="incorrectAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 21 </a> <!-- incorrect-->
 	</div>
 </div>
 	
-<!-- this section displays Page for Question 4 and gives user the yes/no options-->
+<!-- this section displays Page for Question 4 and gives user the next question if they were incorrect on question 3-->
 <div class="page" id="four">
 	<div id="header" class="w3-container w3-flat-pomegranate"> <!-- creating the header for Q4-->
 		<h1>Geometry</h1>
@@ -150,13 +147,13 @@ Known Issues:
 	<div id="content" class="w3-container">
 		<p>That was incorrect. Here's an easier question: </p> <!--short intro message--> 
 		<p>A rectangle has length 2, width 3, and height 1. What is its volume?</p> <!--I asked the question for Q4 here.--> 
-		<a href="#five" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 6 </a> <!-- correct, add to score-->
+		<a href="#five" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 6 </a> <!-- this is the correct answer, so the score increases-->
 		<a href="#six" onclick="incorrectAdd();"  onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 9 </a> <!-- incorrect-->
 		<a href="#six" onclick="incorrectAdd();"  onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 4 </a> <!-- incorrect-->
 	</div>
 </div>
 
-<!-- this section displays Page for Question 5 and gives user the yes/no options-->
+<!-- this section displays Page for Question 5 and gives user the next question if they were correct  on question 3-->
 <div class="page" id="five">
 	<div id="header" class="w3-container w3-flat-pomegranate"> <!-- creating the header for Q5-->
 		<h1>Calculus</h1>
@@ -165,13 +162,13 @@ Known Issues:
 	<div id="content" class="w3-container">
 		<p>That was correct! Here's a harder question: </p> <!--short intro message--> 
 		<p>What is the derivative of sin(x)? </p> <!--I asked the question for Q5 here.-->
-		<a href="#seven" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> cos(x) </a> <!-- correct-->
+		<a href="#seven" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> cos(x) </a> <!-- this is the correct answer, so the score increases-->
 		<a href="#six" onclick="incorrectAdd();"  onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> -cos(x) </a> <!-- incorrect-->
 		<a href="#six" onclick="incorrectAdd();"  onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> xcos(x) </a> <!-- incorrect-->
 	</div>
 </div>
 
-<!-- this section displays Page for Question 6 and gives user the yes/no options-->
+<!-- this section displays Page for Question 6 and gives user the next question if they were incorrect on question 4-->
 <div class="page" id="six">
 	<div id="header" class="w3-container w3-flat-pomegranate"> <!-- creating the header for Q6-->
 		<h1>Geometry</h1>
@@ -186,7 +183,7 @@ Known Issues:
 	</div>
 </div>
 
-<!-- this section displays Page for Question 7 and gives user the yes/no options-->
+<!-- this section displays Page for Question 7 and gives user the next question if they were correct on question 4-->
 <div class="page" id="seven">
 	<div id="header" class="w3-container w3-flat-pomegranate"> <!-- creating the header for Q6-->
 		<h1>Geometry</h1>
@@ -197,11 +194,11 @@ Known Issues:
 		<p>How many degrees are inside a triangle?</p> <!--I asked the question for Q6 here.-->
 		<a href="#eleven" onclick="incorrectAdd();"  onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 360 </a> <!-- incorrect-->
 		<a href="#eleven" onclick="incorrectAdd();"  onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 90 </a> <!-- incorrect-->
-		<a href="#nine" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 180 </a> <!-- correct-->
+		<a href="#nine" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> 180 </a> <!-- this is the correct answer, so the score increases-->
 	</div>
 </div>
 
-<!-- this section displays Page for Question 7 and gives user the yes/no options-->
+<!-- this section displays Page for Question 7 and gives user the next question if they were correct on question 7-->
 <div class="page" id="nine">
 	<div id="header" class="w3-container w3-flat-pomegranate"> <!-- creating the header for Q6-->
 		<h1>Calculus</h1>
@@ -212,7 +209,7 @@ Known Issues:
 		<p>Take the integral of 1/x in respect to x.</p> <!--I asked the question for Q6 here.-->
 		<a href="#eleven" onclick="incorrectAdd();"  onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> ln|1/x|+c </a> <!-- incorrect-->
 		<a href="#eleven" onclick="incorrectAdd();"  onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> e^x+c </a> <!-- incorrect-->
-		<a href="#eleven" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> ln|x|+c </a> <!-- correct-->
+		<a href="#eleven" onclick="scoreAdd();" onclick="questionsAnswered();" class="w3-btn w3-flat-pomegranate"> ln|x|+c </a> <!-- this is the correct answer, so the score increases-->
 	</div>
 </div>
 
