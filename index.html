@@ -6,7 +6,7 @@ THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
  
  
 Authors in chronological order of contribution:
-[ADD YOUR NAME HERE]
+Abby Miri
 	
 Further Information:
 https://www.w3schools.com/w3css/default.asp
@@ -25,7 +25,7 @@ Known Issues:
 -->
 	
    <head> 
-      <title>This or That</title>  
+      <title>Math Quiz!</title>  
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="mobile-web-app-capable" content="yes">
       <link rel="stylesheet" href="w3.css">
@@ -34,22 +34,16 @@ Known Issues:
 
 
 <script>
-        var allergy_count = 0;//variable to keep track of the number of times the user answers a question that leads to the allergy diagnosis 
-        var cold_count = 0;//variable to keep track of the number of times the user answers a question that leads to the cold diagnosis 
+        var correct_count = 0;//variable to keep track of the number of questions the user entered correctly
+        
 
-        function allergyAdd(){ //this function is used to add an additional count to allergy_count each time it is called
-            allergy_count = allergy_count + 1; 
+        function scoreAdd(){ //this function is used to add an additional count to correct_count each time it is called
+            correct_count = correct_count + 1; 
 		//alert("allergy_count is " + allergy_count); I wanted to further clarify that the alert is displaying the count for allergy_count, but this code is now irrelevant
         }
 
-        function coldAdd(){
-            cold_count = cold_count + 1;//this function is used to add an additional count to cold_count each time it is called
-		//alert("cold_count is " + cold_count); I wanted to add further clarify that the alert is displaying the count for cold_count, but this code is now irrelevant
-        }
-
 	function outputResults(){
-		var percent_allergy = allergy_count/(allergy_count + cold_count)*100; // This line converts the allergy_count into a percentage
-		var percent_cold = cold_count/(allergy_count + cold_count)*100; // This line converts the cold_count into a percentage
+		var percent_correct = correct_count/(9)*100; // This line converts the correct_count into a percentage
 		var resultsText = document.getElementById("resultsLocation"); // creates a java script link between the variable called "resultsText" and the page element with id of resultsLocation
 		resultsLocation.innerHTML = "Probability it is allergies = " + percent_allergy + "% <br> Probability it is a cold = " + percent_cold + "%" //This line replaces the text from the Results Page with the diagnosis
 	}
@@ -82,17 +76,17 @@ Known Issues:
 
 <body>
 <div id="header" class="w3-container w3-flat-carrot">
-	<h1>Cold or Allergies?</h1> 
+	<h1>Adaptive Math Quiz!</h1> 
 </div>
 <!--this section displays the content that the user sees immediately upon opening the website-->
 <div id="content" class="w3-container">
-	<p>Are you feeling like you might have a cold but wonder if it is allergies. Answer a few short questions to find out!</p> <!--Introduce the user to the website-->
+	<p>Test your math skills with this adaptive math assessment!</p> <!--Introduce the user to the website-->
 
 	<a href="#one" class="w3-btn w3-grey w3-round"> Get Started </a> <!-- this line presents the first button that users click to proceed to page one-->
 	
-	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
+	<p>This multiple choice math quiz will test your level of math. Get questions correct, and you will proceed to more difficult questions that are worth more points.</p>
  	
-	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+	<p>Best of Luck!!</p>
 </div>
 	
 <!-- this section displays Page for Question 1 and gives user the yes/no options-->
@@ -102,9 +96,10 @@ Known Issues:
 	</div>
 	
     	<div id="content" class="w3-container"> <!--creating the question and buttons for Q1-->
-		<p>Are your eyes watery or itchy?</p> <!--I asked the question for Question 1 (Q1) here.-->  
-		<a href="#two" onclick="allergyAdd();" class="w3-btn w3-orange"> Watery </a> <!-- Create Yes (Watery) button for Q1. If clicked, adds one to allergy_count-->
-		<a href="#two" onclick="coldAdd();" class="w3-btn w3-orange"> Itchy </a> <!-- Create No (Itchy) button for Q1. If clicked, adds one to cold_count-->
+		<p>|2x-5| = 11</p> <!--I asked the question for Question 1 (Q1) here.-->  
+		<a href="#three" onclick="scoreAdd();" class="w3-btn w3-orange"> 8, -3 </a> <!-- correct, add to score-->
+		<a href="#two" class="w3-btn w3-orange"> 3, -8 </a> <!-- incorrect-->
+		<a href="#two" class="w3-btn w3-orange"> 7, 10 </a> <!-- incorrect-->
 	</div>
 </div>
 	
@@ -115,9 +110,11 @@ Known Issues:
 	</div>
 	
 	<div id="content" class="w3-container"> <!--creating the question and buttons for Q2-->
-		<p>Do you have a fever?</p> <!--I asked the question for Q2 here.--> 
-		<a href="#three" onclick="coldAdd();" class="w3-btn w3-orange"> Yes </a> <!-- Create Yes button for Q2. If clicked, adds one to cold_count-->
-		<a href="#three" onclick="allergyAdd();" class="w3-btn w3-orange"> No </a> <!-- Create No button for Q2. If clicked, adds one to allergy_count-->
+		<p>That was incorrect. Here's an easier question: </p> <!--short intro message--> 
+		<p>4x + 2 = 6</p> <!--I asked the question for Q2 here.--> 
+		<a href="#four" class="w3-btn w3-orange"> 10 </a> <!-- incorrect-->
+		<a href="#three" onclick="scoreAdd();" class="w3-btn w3-orange"> 1 </a> <!-- correct, increase score-->
+		<a href="#four" class="w3-btn w3-orange"> 2 </a> <!-- incorrect-->
 	</div>
 </div>	
 	
@@ -128,9 +125,11 @@ Known Issues:
 	</div>
 
 	<div id="content" class="w3-container"> <!--creating the question and buttons for Q3-->
-		<p>Do you have a sore throat?</p> <!--I asked the question for Q3 here.--> 
-		<a href="#four" onclick="coldAdd();" class="w3-btn w3-orange"> Yes </a> <!-- Create Yes button for Q3. If clicked, adds one to cold_count-->
-		<a href="#four" onclick="allergyAdd();" class="w3-btn w3-orange"> No </a> <!-- Create No button for Q3. If clicked, adds one to allergy_count-->
+		<p>That was correct! Here's a harder question: </p> <!--short intro message--> 
+		<p>The legs of a right triangle are 8 and 15. What is the hypotenuse?</p> <!--I asked the question for Q3 here.--> 
+		<a href="#four" class="w3-btn w3-orange"> 23 </a> <!-- incorrect-->
+		<a href="#five" onclick="scoreAdd();" class="w3-btn w3-orange"> 17 </a> <!-- Create No button for Q3. If clicked, adds one to allergy_count-->
+		<a href="#four" class="w3-btn w3-orange"> 21 </a> <!-- incorrect-->
 	</div>
 </div>
 	
@@ -141,9 +140,10 @@ Known Issues:
 	</div>
 
 	<div id="content" class="w3-container">
-		<p>Are your symptoms seasonal or chronic?</p> <!--I asked the question for Q4 here.--> 
-		<a href="#five" onclick="allergyAdd();" class="w3-btn w3-orange"> Seasonal </a> <!-- Create Yes (Seasonal) button for Q4. If clicked, adds one to allergy_count-->
-		<a href="#five" onclick="coldAdd();" class="w3-btn w3-orange"> Chronic </a> <!-- Create No (Chronic) button for Q4. If clicked, adds one to cold_count-->
+		<p>That was incorrect. Here's an easier question: </p> <!--short intro message--> 
+		<p>A rectangle has length 2, width 3, and height 1. What is its volume?</p> <!--I asked the question for Q4 here.--> 
+		<a href="#five" onclick="allergyAdd();" class="w3-btn w3-orange"> 6 </a> <!-- Create Yes (Seasonal) button for Q4. If clicked, adds one to allergy_count-->
+		<a href="#five" onclick="coldAdd();" class="w3-btn w3-orange"> 9 </a> <!-- Create No (Chronic) button for Q4. If clicked, adds one to cold_count-->
 	</div>
 </div>
 
